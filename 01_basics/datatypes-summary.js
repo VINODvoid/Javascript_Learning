@@ -40,3 +40,25 @@ const myFunc = function() {
     console.log("Hello World");
 }
 myFunc()
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Stack (Primitive data types) , Heap (Non primitive data types)
+// Stack is a memory allocation for primitive data types
+// Heap is a memory allocation for non primitive data types
+// Stack is faster than heap
+
+let a = 10
+let b = a
+console.log(b); //? Output is 10
+a = 20
+console.log(b); //? Output is 10 because b takes the value of a at the time of declaration
+
+let c = {
+    user : "Vinod",
+    upi : "vinod@upi",
+}
+let d = c
+d.upi = "user@upi"
+console.log(d)
+console.log(c)
