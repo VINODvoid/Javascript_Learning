@@ -42,11 +42,32 @@ const users = [
     }
 ]
 
-console.log(Object.keys(tinderUser));
-console.log(Object.values(tinderUser));
-console.log(Object.entries(tinderUser));
+// console.log(Object.keys(tinderUser));
+// console.log(Object.values(tinderUser));
+// console.log(Object.entries(tinderUser));
 
-console.log(tinderUser.hasOwnProperty("name"));
+// console.log(tinderUser.hasOwnProperty("name"));
 
 
+
+// * Object  Destructuring
+const course = {
+    courseName : "React",
+    price :"999",
+    courseIntrusctor : "Vinod"
+}
+const {courseIntrusctor : instructor} = course;
+// console.log(instructor);
+
+// * Array Destructuring
+const arr = ["Vinod", "Kumar", "Bangalore"];
+const [firstName, lastName, location] = arr;
+// console.log(firstName);
+// console.log(lastName);
+// console.log(location);
+
+
+
+//! JSON (JavaScript Object Notation)
+//? JSON is a syntax for storing and exchanging data.
 
