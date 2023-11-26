@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body style="background-color: #212121; color: #fff";>
+    
+</body>
+<script>
+    const divEle = document.createElement('div');
+    console.log(divEle);
+    divEle.className = 'main';
+    divEle.id = Math.floor(Math.random() *10+1);
+    divEle.setAttribute('title', 'this is title');
+    divEle.style.color = "green";
+    divEle.style.padding = "10px";
+    // divEle.innerHTML = 'this is inner innerHTML';
+    const addText = document.createTextNode('this is my Text node');
+    divEle.appendChild(addText);
+    document.body.appendChild(divEle);
+</script>
+</html>
