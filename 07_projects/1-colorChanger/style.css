@@ -1,0 +1,39 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #212121;
+    color: #8d8888;
+}
+h1{
+    text-align: center;
+    margin: 20px 0;
+}
+/* centering the span */
+.button{
+    display: inline-block;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border: 1.5px solid white;
+    border-radius: 50%;
+
+}
+#grey{
+    background-color: grey;
+}
+#white{
+    background-color: rgb(192, 192, 192);
+}
+#red{
+    background-color: red;
+}
+#green{
+    background-color: green;
+}
+h2{
+    margin: 20px 0;
+    text-align: center;
+}
