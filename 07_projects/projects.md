@@ -349,4 +349,215 @@ clock.innerHTML = date.toLocaleTimeString();
 },1000)
 ```
 
-## 4. 
+## 4. Guess Number
+
+### HTML
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Number</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Guess a Number</h1>
+        <p>Guess a number between 1 and 100</p>
+        <p>You have 10 attempts to guess the Number.</p>
+        <br>
+        <form class="form">
+            <label for="guessField" id="guess">Guess A Number</label>
+            <input type="text" id="guessField">
+            <input type="submit" id="subt" value="Submit The Guess." class="guessSubmit">
+        </form>
+        <div class="resultParas">
+            <p>Previous Guesses : <span class="guesses"></span></p>
+            <p> Guesses Remaining : <span class="lastResult">10</span></p>
+            <p class="lowOrhigh"></p>
+        </div>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
+```
+
+### CSS
+```css
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #212121;
+    color: #f1f1f1;
+}
+#wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    flex-direction: column;
+}
+h1{
+    font-size: 2.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px 0 25px;
+    text-align: center;
+}
+p{
+    font-size: 1.23rem;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 10px;
+}
+#guess{
+    font-size: 1.5rem;
+    margin-top: 15px;
+}
+#guessField{
+    font-size: 1.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px 0 25px;
+    text-shadow: rgb(80, 165, 204)5px 2px 5px;
+    text-align: center;
+    width: 100%;
+    
+}
+.guessSubmit{
+    border-radius: 15px;
+    border: 1px solid #f1f1f1;
+    background-color: #b3aeae;
+    cursor: pointer;
+    width: 150px;
+    height: 35px;
+    text-align: center;
+
+}
+.guessSubmit:hover{
+    background-color: #646464;
+    color: #000000;
+}
+.resultParas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.resultParas > p{
+    font-size: 1.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 15px 0 ;
+    text-align: left;
+}
+```
+
+### JavaScript
+```javascript
+const submit = document.getElementById('subt');
+const userInput = document.getElementById('guessField');
+const guessSlot = document.querySelector('.guesses');
+const remaining = document.querySelector('.lastResult');
+const lowOrhi= document.querySelector('.lowOrhigh');
+const startOver= document.querySelector('.resultParas');
+let randomNum = parseInt(Math.random() * 100 +1);
+
+
+// Creating the Paragraph
+const p = document.createElement('p');
+console.log(randomNum);
+// previous guess
+let prevGuess = [];
+let numGuess =1;
+
+let playGame = true;
+
+if(playGame){
+submit.addEventListener('click', (e) => {
+    e.preventDefault();
+    const guess = parseInt(userInput.value);
+    validateGuess(guess) 
+})
+}
+// validaiting the guess
+function validateGuess(guess) {
+    if(isNaN(guess)){
+        alert('Please enter a valid number');
+    }
+    else if (guess < 1){
+        alert('Please enter a number greater than 1');
+    }
+    else if(guess > 100){
+        alert('Please enter a number less than 100');
+    }
+    else{
+        prevGuess.push(guess);
+        if(numGuess === 11){
+            displayGuess(guess);
+            displayMessage(`Game Over! Number was ${randomNum}`);
+            EndGame();
+        }
+        else{
+            displayGuess(guess);
+            checkGuess(guess);
+        }
+    }
+}
+function checkGuess(guess) {
+    if (guess === randomNum){
+        displayMessage(`You guessed correctly!`);
+        EndGame(); 
+    }
+    else if(guess < randomNum)
+    {
+        displayMessage(`Too low! Try again!`);
+    }
+    else if(guess > randomNum)
+    {
+        displayMessage(`Too High! Try again!`);
+    }
+}
+function displayGuess(guess){
+    userInput.value = '';
+    guessSlot.innerHTML += ` ${guess} ,`;
+    numGuess ++ ;
+    remaining.innerHTML = `${11-numGuess} Guesses Left!`;
+}
+//displaying the guess
+function displayMessage(message) {
+    lowOrhi.innerHTML = `<h2>${message}</h2>`;
+}
+function EndGame(){
+    userInput.value = '';
+    userInput.setAttribute('disabled', '');
+    submit.setAttribute('disabled', '');
+    p.classList.add('button');
+    p.innerHTML = `<h2 id="newGame">Start New Game</h2>`;
+    startOver.appendChild(p);
+    playGame = false;
+    newGame();
+}
+
+// new  the game
+function newGame(){
+    const newGameBtn =document.querySelector('#newGame');
+    newGameBtn.addEventListener('click', (e) => {
+        playGame = true;
+        numGuess = 1;
+        guessSlot.innerHTML = '';
+        lowOrhi.innerHTML = '';
+        remaining.innerHTML = '';
+        userInput.value = '';
+        userInput.removeAttribute('disabled');
+        submit.removeAttribute('disabled');
+        startOver.removeChild(p);
+        prevGuess = [];
+        randomNum = parseInt(Math.random() * 100 +1);
+        remaining.innerHTML = `${11-numGuess} Guesses Left!`;
+    })
+}
+```
