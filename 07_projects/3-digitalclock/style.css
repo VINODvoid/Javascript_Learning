@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #212121;
+    color: #f5f5f5;
+    
+
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+}
+#clock{
+    border: 1px solid #f5f5f5;
+    width: 150px;
+    height: 50px;
+    margin: 20px auto;
+    border-radius: 15px;
+    background-color: orange;
+    padding: 15px 15px 15px 20px;
+    text-align: center;
+}

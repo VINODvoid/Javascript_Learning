@@ -279,3 +279,74 @@ button.addEventListener('click',function(e){
         }
     }
 ```
+
+## 3. Digital Clock
+
+### HTML
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="center">
+        <div id="banner"><span>Local Time</span></div>
+        <div id="clock"></div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
+```
+
+### CSS
+```css
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #212121;
+    color: #f5f5f5;
+    
+
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+}
+#clock{
+    border: 1px solid #f5f5f5;
+    width: 150px;
+    height: 50px;
+    margin: 20px auto;
+    border-radius: 15px;
+    background-color: orange;
+    padding: 15px 15px 15px 20px;
+    text-align: center;
+}
+```
+
+### JavaScript
+```javascript
+const clock = document.getElementById('clock');
+
+
+
+// SetInterval will set the interval
+setInterval(() =>{
+    let date = new Date();
+clock.innerHTML = date.toLocaleTimeString();
+
+},1000)
+```
+
+## 4. 
