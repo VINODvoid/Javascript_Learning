@@ -561,3 +561,138 @@ function newGame(){
     })
 }
 ```
+
+
+## 5. Random Color Generator
+
+### HTML
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random color Generator</title>
+  </head>
+
+  <body style="background-color: #414141; color: aliceblue;">
+    
+    <h1>
+      Clicking the start button , change the background color every second
+    </h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <script src="index.js"></script>
+  </body>
+</html>
+```
+
+### JavaScript
+
+```javascript
+
+let IntervalId;
+
+const randomColor = function()
+{
+    const hex = '0123456789ABCDEF'
+    let color = '#'
+    for (let i = 0; i < 6; i++) {
+        color += hex[Math.floor(Math.random() * 16)]
+    }
+    return color
+}
+const startChange = function()
+{
+    if(!IntervalId){
+        IntervalId =setInterval(changeBgColor,1000)
+    }
+    
+    function changeBgColor()
+    {
+        document.body.style.backgroundColor = randomColor();
+    }
+
+}
+const stopChange = function()
+{
+    clearInterval(IntervalId);
+    IntervalId = null;
+}
+document.querySelector('#start').addEventListener('click', startChange)
+document.querySelector('#stop').addEventListener('click', stopChange)
+
+```
+
+
+## 6. Key Checker 
+
+### HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Checker</title>
+    <style>
+        .project{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        #insert{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        table tr td {
+            padding: 10px;
+            border: 1px solid #ffff
+        
+        }
+        
+        
+
+    </style>
+</head>
+<body style="background-color: #212121; color: aliceblue;">
+    <div class="project">
+        <div id="insert">
+            <div class="key">Press the key and Watch Magic </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
+```
+
+
+### JavaScript
+
+```javascript
+const insert = document.querySelector('#insert');
+window.addEventListener('keydown', (e) => {
+    insert.innerHTML = `
+    <div class="color">
+    <table>
+  <tr>
+    <th>Key</th>
+    <th>Key Code</th>
+    <th>Code</th>
+  </tr>
+  <tr>
+    <td>${e.key === '' ? "Space" : e.key}</td>
+    <td>${e.keyCode}</td>
+    <td>${e.code}</td>
+  </tr>
+  </table>
+    </div>`
+}
+);
+```
